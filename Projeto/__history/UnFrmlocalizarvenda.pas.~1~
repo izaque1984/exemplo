@@ -1,0 +1,24 @@
+unit UnFrmlocalizarvenda;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TFRMLOCALIZARVENDA = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZARVENDA: TFRMLOCALIZARVENDA;
+
+implementation
+
+{$R *.dfm}
+
+end.

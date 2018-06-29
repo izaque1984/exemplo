@@ -1,0 +1,24 @@
+unit UnFrmncm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TFRMNCM = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMNCM: TFRMNCM;
+
+implementation
+
+{$R *.dfm}
+
+end.

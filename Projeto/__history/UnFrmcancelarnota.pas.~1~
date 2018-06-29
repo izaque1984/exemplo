@@ -1,0 +1,24 @@
+unit UnFrmcancelarnota;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TFRMCANCELARNOTA = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCANCELARNOTA: TFRMCANCELARNOTA;
+
+implementation
+
+{$R *.dfm}
+
+end.

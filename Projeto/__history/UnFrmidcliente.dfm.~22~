@@ -1,0 +1,67 @@
+object FRMIDCLIENTE: TFRMIDCLIENTE
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  Caption = 'Identificar Cliente NFC-e'
+  ClientHeight = 71
+  ClientWidth = 312
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object FlatGroupBox1: TFlatGroupBox
+    Left = 8
+    Top = 8
+    Width = 289
+    Height = 54
+    Caption = 'Digite o CPF'
+    Color = clBtnFace
+    ParentColor = False
+    TabOrder = 0
+    ColorBorder = 11771961
+    object editnome: TFlatEdit
+      Left = 24
+      Top = 22
+      Width = 193
+      Height = 22
+      ColorFocused = clMoneyGreen
+      ColorFlat = clSilver
+      CharCase = ecUpperCase
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object editcpf: TFlatEdit
+      Left = 24
+      Top = 22
+      Width = 257
+      Height = 22
+      ColorFocused = clMoneyGreen
+      ColorBorder = 16744448
+      ColorFlat = clWhite
+      CharCase = ecUpperCase
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      MaxLength = 11
+      ParentFont = False
+      TabOrder = 0
+      OnExit = editcpfExit
+    end
+  end
+end

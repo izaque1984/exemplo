@@ -1,0 +1,44 @@
+unit UnFrmlocalizarvenda;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, Grids, DBGrids, Mask, DBCtrls;
+
+type
+  TFRMLOCALIZARVENDA = class(TForm)
+    Panel1: TPanel;
+    GroupBox1: TGroupBox;
+    Edit1: TEdit;
+    rb: TRadioGroup;
+    Panel3: TPanel;
+    GroupBox4: TGroupBox;
+    DBEdit1: TDBEdit;
+    GroupBox2: TGroupBox;
+    DBEdit2: TDBEdit;
+    GroupBox3: TGroupBox;
+    DBEdit3: TDBEdit;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    procedure DBGrid1DblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZARVENDA: TFRMLOCALIZARVENDA;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFRMLOCALIZARVENDA.DBGrid1DblClick(Sender: TObject);
+begin
+DMLOJA.TBVENDA.Locate('minuta',DMCONSULTA.IBCONSULTAVENDA.FieldByName('minuta').AsInteger,[]);
+Close;
+end;
+
+end.

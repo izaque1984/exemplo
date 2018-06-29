@@ -1,0 +1,445 @@
+unit Unfrmcadproduto;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, DBCtrls, StdCtrls, TFlatComboBoxUnit, Buttons,
+  ComCtrls, TFlatEditUnit, ExtCtrls,db, TFlatGroupBoxUnit;
+
+type
+  TFRMCADPRODUTO = class(TForm)
+    Panel3: TPanel;
+    PageControl1: TPageControl;
+    pgcadprincipal: TTabSheet;
+    GroupBox1: TGroupBox;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    Label37: TLabel;
+    SpeedButton4: TSpeedButton;
+    SpeedButton5: TSpeedButton;
+    SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    dbmedida: TFlatComboBox;
+    dbcolecao: TFlatComboBox;
+    editfornecedor: TFlatEdit;
+    editgrupo: TFlatEdit;
+    editsecao: TFlatEdit;
+    editsubgrupo: TFlatEdit;
+    editmarca: TFlatEdit;
+    GroupBox2: TGroupBox;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label14: TLabel;
+    Label20: TLabel;
+    Label30: TLabel;
+    Label36: TLabel;
+    Label18: TLabel;
+    Label32: TLabel;
+    editprecocusto: TFlatEdit;
+    editmargemlucro: TFlatEdit;
+    editprecovenda: TFlatEdit;
+    editdesconto: TFlatEdit;
+    editlucro: TFlatEdit;
+    editprecopromocao: TFlatEdit;
+    editdatai: TFlatEdit;
+    editdataf: TFlatEdit;
+    editeditar: TEdit;
+    GroupBox3: TGroupBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label31: TLabel;
+    Label38: TLabel;
+    editqtdcompra: TFlatEdit;
+    editqtdvendas: TFlatEdit;
+    editcritico: TFlatEdit;
+    editqtdestoque: TFlatEdit;
+    TabSheet2: TTabSheet;
+    PageControl2: TPageControl;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
+    TabSheet3: TTabSheet;
+    GroupBox6: TGroupBox;
+    Panel4: TPanel;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    DBNavigator1: TDBNavigator;
+    DBGrid2: TDBGrid;
+    GroupBox7: TGroupBox;
+    editcodigo: TFlatEdit;
+    GroupBox8: TGroupBox;
+    DBGrid1: TDBGrid;
+    Panel5: TPanel;
+    SpeedButton1: TSpeedButton;
+    Panel6: TPanel;
+    SpeedButton10: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    panelmostra: TPanel;
+    FlatGroupBox1: TFlatGroupBox;
+    Editean: TFlatEdit;
+    FlatGroupBox2: TFlatGroupBox;
+    editdescricao: TFlatEdit;
+    FlatGroupBox3: TFlatGroupBox;
+    editncm: TFlatEdit;
+    FlatGroupBox5: TFlatGroupBox;
+    FlatComboBox1: TFlatComboBox;
+    cbcfop: TFlatComboBox;
+    ListBox1: TListBox;
+    ListBox2: TListBox;
+    SpeedButton11: TSpeedButton;
+    Label1: TLabel;
+    SpeedButton12: TSpeedButton;
+    editcest: TFlatEdit;
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure limparedit;
+    procedure SpeedButton10Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure EditeanExit(Sender: TObject);
+    procedure SpeedButton11Click(Sender: TObject);
+    procedure editncmExit(Sender: TObject);
+    procedure cbcfopExit(Sender: TObject);
+    procedure SpeedButton12Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCADPRODUTO: TFRMCADPRODUTO;
+
+implementation
+
+uses UnDmpdv, UnFrmncm, UnFrmlocalizarcest;
+
+{$R *.dfm}
+procedure TFRMCADPRODUTO.cbcfopExit(Sender: TObject);
+begin
+if cbcfop.Text = '5405' then
+begin
+  editcest.SetFocus;
+  Application.MessageBox('Produto com  Substituição Tributária! Necessario Informar o CEST!','Informação do Sistema',Mb_IconInformation);
+
+end;
+
+
+    
+
+end;
+
+procedure TFRMCADPRODUTO.EditeanExit(Sender: TObject);
+begin
+if editeditar.Text = 'N' then
+begin
+
+//  If not DMLOJA.TBESTOQUE.Locate('REFERENCIA',Editean.Text,[ loPartialKey,loCaseInsensitive]) then
+  If not DMLOJA.TBESTOQUE.Locate('REFERENCIA',Editean.Text,[loCaseInsensitive]) then
+
+ begin
+
+   editdescricao.SetFocus;
+ end
+ else
+ begin
+    Application.MessageBox('Já Existe um Produto Cadastrado Para esse Código','Informação do Sistema',Mb_IconInformation);
+
+
+     Editean.SetFocus;
+     Editean.Clear;
+
+ end;
+end;
+
+end;
+
+procedure TFRMCADPRODUTO.editncmExit(Sender: TObject);
+begin
+{
+ if  (Length(editncm.Text) < 8) then
+
+  begin
+    Application.MessageBox('Código N.C.M com apenas sete numeros, favor colocar zero (0) na frente!','Informação do Sistema',Mb_IconInformation);
+
+
+ end;
+ }
+
+{
+if DMLOJA.TBCONFIGCTRNCM.AsString = 'SIM' then
+ Begin
+}    //   DMLOJA.TBESTOQUE.Locate('REFERENCIA',Editean.Text,[ loCaseInsensitive])
+
+  If not  DMLOJA.TBTIPI.Locate('NCM',editncm.Text,[loCaseInsensitive]) then
+  begin
+
+   Application.MessageBox('Verefique o NCM!','Informação do Sistema',Mb_IconInformation);
+
+  end;
+
+
+
+
+
+
+ if DMLOJA.TAB_CEST.Locate('NCM',editncm.Text,[loCaseInsensitive]) then
+
+  begin
+    Application.MessageBox('Produto com Substituição Tributária, Necessário Informar o CEST','Informação do Sistema',Mb_IconInformation);
+    cbcfop.Text:= '5405';
+    FRMLOCALIZARCEST:= TFRMLOCALIZARCEST.Create(Self);
+    FRMLOCALIZARCEST.editcodigo.Text:= editncm.Text;
+    FRMLOCALIZARCEST.ShowModal;
+
+ end
+
+ else
+ begin
+   cbcfop.Text:= '5102';
+ end;
+
+
+
+
+end;
+
+procedure TFRMCADPRODUTO.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if Key = VK_RETURN then Perform(Wm_NextDlgCtl,0,0);
+end;
+
+procedure TFRMCADPRODUTO.FormShow(Sender: TObject);
+begin
+Editean.SetFocus;
+pgcadprincipal.Show;
+end;
+
+procedure TFRMCADPRODUTO.limparedit;
+begin
+  editprecocusto.Clear;
+  editmargemlucro.Clear;
+  editprecovenda.Clear;
+  editdesconto.Clear;
+  editlucro.Clear;
+  editprecopromocao.Clear;
+  editdatai.Clear;
+  editdataf.Clear;
+  editcritico.Clear;
+  editqtdcompra.Clear;
+  editqtdvendas.Clear;
+  editcritico.Clear;
+ // editqtdestoque.Clear;
+  Editean.Clear;
+  editdescricao.Clear;
+  editncm.Clear;
+  //cbcfop.Text:= '';
+ // dbmedida.Text:='';
+  dbcolecao.Text:='';
+  editfornecedor.Clear;
+  editgrupo.clear;
+  editsecao.clear;
+  editsubgrupo.clear;
+  editmarca.clear;
+  editcest.Clear;
+
+end;
+
+procedure TFRMCADPRODUTO.SpeedButton10Click(Sender: TObject);
+begin
+Close();
+end;
+
+procedure TFRMCADPRODUTO.SpeedButton11Click(Sender: TObject);
+begin
+FRMNCM:= TFRMNCM.Create(Self);
+FRMNCM.ShowModal;
+end;
+
+procedure TFRMCADPRODUTO.SpeedButton12Click(Sender: TObject);
+begin
+FRMLOCALIZARCEST:= TFRMLOCALIZARCEST.Create(Self);
+FRMLOCALIZARCEST.ShowModal;
+end;
+
+procedure TFRMCADPRODUTO.SpeedButton8Click(Sender: TObject);
+begin
+
+If FRMCADPRODUTO.Editean.Text='' Then
+begin
+ Application.MessageBox('Codigo de Venda não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+ editean.SetFocus;
+ exit;
+end;
+If FRMCADPRODUTO.editdescricao.Text='' Then
+begin
+ Application.MessageBox('A Descrição do produto não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+ editdescricao.SetFocus;
+ exit;
+end;
+
+
+If FRMCADPRODUTO.editncm.Text='' Then
+begin
+ Application.MessageBox('O NCM não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+ editncm.SetFocus;
+ exit;
+end;
+
+if (DMLOJA.TAB_CEST.Locate('NCM',editncm.Text,[loCaseInsensitive]))and (editcest.Text='') then
+begin
+   Application.MessageBox('CEST Não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+   editncm.SetFocus;
+   Exit;
+end;
+
+
+
+
+
+If FRMCADPRODUTO.cbcfop.Text='' Then
+begin
+ Application.MessageBox('CFOP não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+ cbcfop.SetFocus;
+ exit;
+end;
+
+If FRMCADPRODUTO.dbmedida.Text='' Then
+begin
+ Application.MessageBox('Unidade de Medida não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+ dbmedida.SetFocus;
+ exit;
+end;
+
+ if DMLOJA.TBCONFIGCTRNCM.AsString <> 'SIM' then
+
+ begin
+   If FRMCADPRODUTO.editprecovenda.Text='' Then
+  begin
+    Application.MessageBox('Preço de Venda do Produto não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+    editprecovenda.SetFocus;
+    exit;
+ end;
+
+ end;
+ 
+
+     If FRMCADPRODUTO.editqtdestoque.Text='' Then
+begin
+ Application.MessageBox('Quantidade no Estoque não pode ser nulo!','Informação do Sistema',Mb_IconInformation);
+ editqtdestoque.SetFocus;
+ exit;
+end;
+
+      if editeditar.Text = 'N' then
+
+     begin
+
+
+
+
+     DMLOJA.TBESTOQUE.Append;
+     DMLOJA.TBESTOQUEREFERENCIA.AsString:= Editean.Text;
+     DMLOJA.TBESTOQUEQTDCOMPRADA.AsString:= editqtdcompra.Text;
+     DMLOJA.TBESTOQUEQTDVENDIDA.AsString:= editqtdvendas.Text;
+     DMLOJA.TBESTOQUEQTDESTOQUE.AsString:= editqtdestoque.Text;
+     DMLOJA.TBESTOQUEULTIMACOMPRA.AsString:= DateToStr(Date);
+     DMLOJA.TBESTOQUEDESCRICAO.AsString:= editdescricao.Text;
+     DMLOJA.TBESTOQUEPONCENTAGEN.AsString:= editmargemlucro.Text;
+     DMLOJA.TBESTOQUEFORNECEDOR.AsString:= editfornecedor.Text;
+     DMLOJA.TBESTOQUEGRUPO.AsString:= editgrupo.Text;
+     DMLOJA.TBESTOQUEUNIDADE.AsString:= dbmedida.Text;
+     DMLOJA.TBESTOQUECFOP.AsString:= cbcfop.Text;
+     DMLOJA.TBESTOQUENCM.AsString:= editncm.Text;
+     DMLOJA.TBESTOQUEQTDMINIMA.AsString:= editcritico.Text;
+     DMLOJA.TBESTOQUEDTINICIOPROMOCAO.AsString:= editdatai.Text;
+     DMLOJA.TBESTOQUEDTFIMPROMOCAO.AsString:= editdataf.Text;
+     DMLOJA.TBESTOQUEVLRVENDA.Text:= editprecovenda.Text;
+     DMLOJA.TBESTOQUEPRECOCUSTO.AsString:= editprecocusto.Text;
+     DMLOJA.TBESTOQUELUCRO.AsString:= editlucro.Text;
+     DMLOJA.TBESTOQUEDESCONTOINDIVIDUAL.AsString:= editdesconto.Text;
+     DMLOJA.TBESTOQUEVLVENDAPROMOCAO.AsString:= editprecopromocao.Text;
+     DMLOJA.TBESTOQUECOLECAO.AsString:= dbcolecao.Text;
+     DMLOJA.TBESTOQUESECAO.AsString:= editsecao.Text;
+     DMLOJA.TBESTOQUESUBGRUPO.AsString:= editsubgrupo.Text;
+     DMLOJA.TBESTOQUEMARCA.AsString:= editmarca.Text;
+     if editcest.Text <> '' then
+     begin
+     DMLOJA.TBESTOQUENRCEST.AsString:= 'CEST='+editcest.Text+';';
+     end
+     else
+     begin
+     DMLOJA.TBESTOQUENRCEST.AsString:= editcest.Text;
+     end;
+
+
+     DMLOJA.TBESTOQUE.Post;
+
+     Application.MessageBox('Cadastro do Produto Efetuado com Sucesso!','Informação do Sistema',Mb_IconInformation);
+     limparedit;
+     Editean.SetFocus;
+     end;
+
+         if editeditar.Text = 'E' then
+
+     begin
+   
+     DMLOJA.TBESTOQUE.Edit;
+     DMLOJA.TBESTOQUEREFERENCIA.AsString:= Editean.Text;
+     DMLOJA.TBESTOQUEQTDCOMPRADA.AsString:= editqtdcompra.Text;
+     DMLOJA.TBESTOQUEQTDVENDIDA.AsString:= editqtdvendas.Text;
+     DMLOJA.TBESTOQUEQTDESTOQUE.AsString:= editqtdestoque.Text;
+     DMLOJA.TBESTOQUEULTIMACOMPRA.AsString:= DateToStr(Date);
+     DMLOJA.TBESTOQUEDESCRICAO.AsString:= editdescricao.Text;
+     DMLOJA.TBESTOQUEPONCENTAGEN.AsString:= editmargemlucro.Text;
+     DMLOJA.TBESTOQUEFORNECEDOR.AsString:= editfornecedor.Text;
+     DMLOJA.TBESTOQUEGRUPO.AsString:= editgrupo.Text;
+     DMLOJA.TBESTOQUEUNIDADE.AsString:= dbmedida.Text;
+     DMLOJA.TBESTOQUECFOP.AsString:= cbcfop.Text;
+     DMLOJA.TBESTOQUENCM.AsString:= editncm.Text;
+     DMLOJA.TBESTOQUEQTDMINIMA.AsString:= editcritico.Text;
+     DMLOJA.TBESTOQUEDTINICIOPROMOCAO.AsString:= editdatai.Text;
+     DMLOJA.TBESTOQUEDTFIMPROMOCAO.AsString:= editdataf.Text;
+     DMLOJA.TBESTOQUEVLRVENDA.Text:= editprecovenda.Text;
+     DMLOJA.TBESTOQUEPRECOCUSTO.AsString:= editprecocusto.Text;
+     DMLOJA.TBESTOQUELUCRO.AsString:= editlucro.Text;
+     DMLOJA.TBESTOQUEDESCONTOINDIVIDUAL.AsString:= editdesconto.Text;
+     DMLOJA.TBESTOQUEVLVENDAPROMOCAO.AsString:= editprecopromocao.Text;
+     DMLOJA.TBESTOQUECOLECAO.AsString:= dbcolecao.Text;
+     DMLOJA.TBESTOQUESECAO.AsString:= editsecao.Text;
+     DMLOJA.TBESTOQUESUBGRUPO.AsString:= editsubgrupo.Text;
+     DMLOJA.TBESTOQUEMARCA.AsString:= editmarca.Text;
+
+
+     if (editcest.Text <> '') and (editcest.text[1]<>'C')then
+     begin
+           DMLOJA.TBESTOQUENRCEST.AsString:= 'CEST='+editcest.Text+';';
+     end
+
+     else
+     begin
+        DMLOJA.TBESTOQUENRCEST.AsString:= editcest.Text;
+     end;
+     DMLOJA.TBESTOQUE.Post;
+
+
+     Application.MessageBox('Alteração do Produto Efetuado com Sucesso!','Informação do Sistema',Mb_IconInformation);
+     Close();
+
+  end;
+end;
+
+
+
+
+
+
+end.

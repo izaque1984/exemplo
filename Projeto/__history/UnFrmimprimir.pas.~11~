@@ -1,0 +1,75 @@
+unit UnFrmimprimir;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, Buttons;
+
+type
+  TFRMIMPRIMIR = class(TForm)
+    Panel1: TPanel;
+    RadioGroup1: TRadioGroup;
+    BitBtn1: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    iRetorno: Integer;
+    { Public declarations }
+  end;
+
+var
+  FRMIMPRIMIR: TFRMIMPRIMIR;
+
+implementation
+
+uses UnFrmpdv;
+
+{$R *.dfm}
+
+procedure TFRMIMPRIMIR.BitBtn1Click(Sender: TObject);
+var
+    StrTagNFCe: String;
+    StrValorTagNFCe: String;
+
+begin
+
+
+ if RadioGroup1.ItemIndex = 0 then
+
+ begin
+   StrTagNFCe:= ('CONFIGURACAO\ImpressaoCompleta');
+   StrValorTagNFCe:= ('1');
+   iRetorno := regAlterarValor_NFCe_Daruma(StrTagNFCe, StrValorTagNFCe);
+//  frmpdv.TrataRetorno_NFCe(iRetorno);
+
+
+ end;
+
+  if RadioGroup1.ItemIndex = 1 then
+
+ begin
+  StrTagNFCe:= ('CONFIGURACAO\ImpressaoCompleta');
+  StrValorTagNFCe:= ('2');
+  iRetorno := regAlterarValor_NFCe_Daruma(StrTagNFCe, StrValorTagNFCe);
+//  frmpdv.TrataRetorno_NFCe(iRetorno);
+
+ end;
+ 
+
+
+
+
+end;
+
+procedure TFRMIMPRIMIR.FormShow(Sender: TObject);
+begin
+
+ RadioGroup1.ItemIndex := 0;
+
+RadioGroup1.SetFocus;
+end;
+
+end.

@@ -1,0 +1,40 @@
+unit UnFrmretornainformacao;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TFRMRETORNAINFODANOTA = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label4: TLabel;
+    Label6: TLabel;
+    EDT_Inicio: TEdit;
+    EDT_Fim: TEdit;
+    EDT_Chave: TEdit;
+    MEMO_InfoRetorno: TMemo;
+    BR_Enviar: TButton;
+    BT_Fechar: TButton;
+    CB_TipoIntervalo: TComboBox;
+    EDT_Serie: TEdit;
+    EDT_Indice: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMRETORNAINFODANOTA: TFRMRETORNAINFODANOTA;
+
+implementation
+
+{$R *.dfm}
+
+end.

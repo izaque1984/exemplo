@@ -1,0 +1,32 @@
+unit UnFrmconfig;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, DBCtrls, TFlatGroupBoxUnit, StdCtrls, Mask;
+
+type
+  TFRMCONFIG = class(TForm)
+    DBNavigator1: TDBNavigator;
+    FlatGroupBox1: TFlatGroupBox;
+    DBComboBox1: TDBComboBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    DBEdit1: TDBEdit;
+    Label3: TLabel;
+    DBEdit2: TDBEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCONFIG: TFRMCONFIG;
+
+implementation
+
+{$R *.dfm}
+
+end.

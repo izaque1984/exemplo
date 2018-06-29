@@ -1,0 +1,444 @@
+object FRMLOCALIZARPRODUTO: TFRMLOCALIZARPRODUTO
+  Left = 0
+  Top = 0
+  Caption = 'Localizar Produto'
+  ClientHeight = 381
+  ClientWidth = 798
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    Left = 0
+    Top = 335
+    Width = 798
+    Height = 46
+    Align = alBottom
+    BevelOuter = bvNone
+    BevelWidth = 2
+    TabOrder = 0
+    ExplicitLeft = -143
+    ExplicitWidth = 941
+    object GroupBox4: TGroupBox
+      Left = 0
+      Top = 0
+      Width = 169
+      Height = 46
+      Align = alLeft
+      Caption = 'Codigo de Venda'
+      TabOrder = 0
+      object DBText1: TDBText
+        Left = 8
+        Top = 19
+        Width = 71
+        Height = 19
+        AutoSize = True
+        DataField = 'REFERENCIA'
+        DataSource = DMCONSULTA.dsqylocalizarproduto
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 169
+      Top = 0
+      Width = 396
+      Height = 46
+      Align = alClient
+      Caption = 'Descri'#231#227'o'
+      TabOrder = 1
+      ExplicitLeft = 121
+      ExplicitTop = 24
+      ExplicitWidth = 539
+      object DBText2: TDBText
+        Left = 9
+        Top = 19
+        Width = 71
+        Height = 19
+        AutoSize = True
+        DataField = 'DESCRICAO'
+        DataSource = DMCONSULTA.dsqylocalizarproduto
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 565
+      Top = 0
+      Width = 113
+      Height = 46
+      Align = alRight
+      Caption = 'Valor '
+      TabOrder = 2
+      ExplicitLeft = 708
+      object DBText3: TDBText
+        Left = 6
+        Top = 19
+        Width = 71
+        Height = 19
+        AutoSize = True
+        DataField = 'VLRVENDA'
+        DataSource = DMCONSULTA.dsqylocalizarproduto
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object GroupBox5: TGroupBox
+      Left = 678
+      Top = 0
+      Width = 120
+      Height = 46
+      Align = alRight
+      Caption = 'Qtd Estoque'
+      TabOrder = 3
+      ExplicitLeft = 821
+      object DBText4: TDBText
+        Left = 36
+        Top = 19
+        Width = 71
+        Height = 19
+        AutoSize = True
+        DataField = 'QTDESTOQUE'
+        DataSource = DMCONSULTA.dsqylocalizarproduto
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 798
+    Height = 58
+    Align = alTop
+    BevelOuter = bvLowered
+    TabOrder = 1
+    ExplicitLeft = -143
+    ExplicitWidth = 941
+    object BitBtn4: TBitBtn
+      Left = 505
+      Top = 8
+      Width = 0
+      Height = 41
+      Cursor = crHandPoint
+      Cancel = True
+      Caption = 'Adicionar / Enter'
+      Default = True
+      ModalResult = 1
+      TabOrder = 1
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+        3333333333333333333333330000333333333333333333333333F33333333333
+        00003333344333333333333333388F3333333333000033334224333333333333
+        338338F3333333330000333422224333333333333833338F3333333300003342
+        222224333333333383333338F3333333000034222A22224333333338F338F333
+        8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
+        33333338F83338F338F33333000033A33333A222433333338333338F338F3333
+        0000333333333A222433333333333338F338F33300003333333333A222433333
+        333333338F338F33000033333333333A222433333333333338F338F300003333
+        33333333A222433333333333338F338F00003333333333333A22433333333333
+        3338F38F000033333333333333A223333333333333338F830000333333333333
+        333A333333333333333338330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+    end
+    object rb: TRadioGroup
+      Left = 485
+      Top = 1
+      Width = 178
+      Height = 56
+      Align = alRight
+      Caption = 'Pesquisar por'
+      Columns = 2
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ItemIndex = 1
+      Items.Strings = (
+        'C'#243'digo'
+        'Descri'#231#227'o'
+        'Se'#231#227'o'
+        'Reduzido')
+      ParentFont = False
+      TabOrder = 2
+    end
+    object GroupBox1: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 484
+      Height = 56
+      Align = alClient
+      Caption = 'Digite os dados da Pesquisa'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      object Edit1: TFlatEdit
+        Left = 6
+        Top = 21
+        Width = 472
+        Height = 24
+        ColorFocused = clMoneyGreen
+        ColorFlat = clWhite
+        CharCase = ecUpperCase
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        OnChange = Edit1Change
+      end
+    end
+    object GroupBox6: TGroupBox
+      Left = 663
+      Top = 1
+      Width = 134
+      Height = 56
+      Align = alRight
+      TabOrder = 3
+      ExplicitLeft = 806
+      object SpeedButton1: TSpeedButton
+        Left = 8
+        Top = 10
+        Width = 120
+        Height = 33
+        Cursor = crHandPoint
+        Caption = 'Cadastro Rapido'
+        Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Glyph.Data = {
+          F6060000424DF606000000000000360000002800000018000000180000000100
+          180000000000C006000000000000000000000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF58A47158A47158A47158A47158A4
+          7158A47158A47158A471FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF58A37085BD9D
+          85BD9D85BD9D85BD9D85BD9D85BD9D56A26EFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFF56A26C84D5B15ED09D5ED09D5ED09D5ED09D70C79C53A06AFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF53A0698CD8B662D19F62D19F62D19F62D19F73C89E50
+          9E67FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF509D6592DBBA67D2A267D2A267D2
+          A267D2A275C9A04D9B63FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4D9A6097DDBE
+          6CD3A56CD3A56CD3A56CD3A57ACBA24A985EFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFF49975C99DEC072D5A872D5A872D5A872D5A87FCBA546955AFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF4593579ADFC078D6AC78D6AC78D6AC78D6AC84CDA942
+          9155FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF58A47158A370
+          56A26C53A069509D654D9A6049975C4593573E8E5098DEBF7ED8B07ED8B07ED8
+          B07ED8B08ACFAB3E8E5042915546955A4A985E4D9B63509E6753A06A56A26E58
+          A47158A471A7E6CA74CAA072C89D74C99F78CBA17ECBA482CCA888CFAA8ED0AD
+          85DAB485DAB485DAB485DAB477C9A072C89D74C99F78CBA17ECBA482CCA888CF
+          AA8ED0AD85BD9D58A47158A471A7E6CA8CDCB88CDCB88CDCB88CDCB88CDCB88C
+          DCB88CDCB88CDCB88CDCB88CDCB88CDCB88CDCB88CDCB88CDCB88CDCB88CDCB8
+          8CDCB88CDCB88CDCB88CDCB885BD9D58A47158A471A7E6CA93DDBC93DDBC93DD
+          BC93DDBC93DDBC93DDBC93DDBC93DDBC93DDBC93DDBC93DDBC93DDBC93DDBC93
+          DDBC93DDBC93DDBC93DDBC93DDBC93DDBC93DDBC85BD9D58A47158A471A7E6CA
+          99DFC099DFC099DFC099DFC099DFC099DFC099DFC099DFC099DFC099DFC099DF
+          C099DFC099DFC099DFC099DFC099DFC099DFC099DFC099DFC099DFC085BD9D58
+          A47158A471A7E6CAA0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4
+          A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1C4A0E1
+          C4A0E1C485BD9D58A47158A471A7E6CA94DDBD98DEBF9ADFC099DEC097DDBE92
+          DBBA8CD8B684D5B1A7E3C8A7E3C8A7E3C8A7E3C87AD0A69ADFC09ADFC099DEC0
+          97DDBE92DBBA8CD8B684D5B185BD9D58A47158A47156A26E53A06A509E674D9B
+          634A985E46955A4291553E8E508CD8B6ADE5CCADE5CCADE5CCADE5CC80D1A93E
+          8E5045935749975C4D9A60509D6553A06956A26C58A37058A471FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF45935792DBBAB3E6D0B3E6D0B3E6
+          D0B3E6D087D1AC429155FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF49975C97DDBE
+          B9E8D3B9E8D3B9E8D3B9E8D38CD2AE46955AFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFF4D9A6099DEC0BEE9D6BEE9D6BEE9D6BEE9D691D3B14A985EFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF509D659ADFC0C3EAD9C3EAD9C3EAD9C3EAD996D3B24D
+          9B63FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF53A06998DEBFC7EBDBC7EBDBC7EB
+          DBC7EBDB9BD4B5509E67FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF56A26C94DDBD
+          CAECDDCAECDDCAECDDCAECDD9ED5B753A06AFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFF58A370A7E6CAA7E6CAA7E6CAA7E6CAA7E6CAA7E6CA56A26EFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF58A47158A47158A47158A47158A47158A47158A47158
+          A471FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        ParentFont = False
+      end
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 58
+    Width = 798
+    Height = 277
+    Align = alClient
+    Color = clWhite
+    DataSource = DMCONSULTA.dsqylocalizarproduto
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+    ParentFont = False
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'REFERENCIA'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        Title.Caption = 'Refer'#234'ncia'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 145
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCRICAO'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        Title.Caption = 'Descri'#231#227'o do Produto'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 348
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCONTOINDIVIDUAL'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Desc (%)'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 73
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'VLRVENDA'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Valor Unitario'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 91
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'QTDESTOQUE'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Qtd  Estoque'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 87
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SECAO'
+        Title.Caption = 'Grupo'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 122
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'GRUPO'
+        Title.Caption = 'Se'#231#227'o'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 162
+        Visible = True
+      end>
+  end
+end

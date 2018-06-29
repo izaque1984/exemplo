@@ -1,0 +1,25 @@
+object FRMCONFIG: TFRMCONFIG
+  Left = 0
+  Top = 0
+  Caption = 'Administrador'
+  ClientHeight = 289
+  ClientWidth = 593
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBNavigator1: TDBNavigator
+    Left = 0
+    Top = 256
+    Width = 593
+    Height = 33
+    Align = alBottom
+    TabOrder = 0
+  end
+end

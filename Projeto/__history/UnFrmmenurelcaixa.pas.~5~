@@ -1,0 +1,90 @@
+unit UnFrmmenurelcaixa;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, Mask;
+
+type
+  TFRMMENURELCAIXA = class(TForm)
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    GroupBox2: TGroupBox;
+    DATAI: TMaskEdit;
+    GroupBox3: TGroupBox;
+    DATAF: TMaskEdit;
+    ComboBox1: TComboBox;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    btnImprimir: TBitBtn;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnImprimirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMMENURELCAIXA: TFRMMENURELCAIXA;
+
+implementation
+
+uses UnDmconsulta, UnFrmrelcaixa;
+
+{$R *.dfm}
+
+procedure TFRMMENURELCAIXA.btnImprimirClick(Sender: TObject);
+begin
+ IF DATAI.Text=''THEN
+     IF DATAF.Text=''THEN
+     begin
+      Application.MessageBox('Os Campos data não podem ser nulos!','Informação do Sistema',Mb_IconInformation);
+      exit
+     end;
+      if ComboBox1.Text = '' then
+      begin
+      Application.MessageBox('Selecione o Tipo de Pagamanto para obter o Relatório!','Informação do Sistema',Mb_IconInformation);
+      exit
+     end;
+
+  if ComboBox1.Text = 'Todos os Pagamentos' then
+
+
+   begin
+
+    DMCONSULTA.IBRELCAIXA.Close;
+
+    DMCONSULTA.IBRELCAIXA.SQL.CLEAR;
+    DMCONSULTA.IBRELCAIXA.SQL.Add('select * from TBCAIXA where DT_ENTRADA between:datai and:dataf');
+    DMCONSULTA.IBRELCAIXA.ParamByName('DATAI').AsDate:=STRTODATE(DATAI.Text);
+    DMCONSULTA.IBRELCAIXA.ParamByName('DATAF').AsDate:=STRTODATE(DATAF.Text);
+    DMCONSULTA.IBRELCAIXA.Open;
+    FRMRELCAIXA:=TFRMRELCAIXA.Create(Self);
+    FRMRELCAIXA.qrpcaixa.preview;
+
+   end;
+   if ComboBox1.Text <> 'Todos os Pagamentos' then
+   begin
+    //
+    DMCONSULTA.IBRELCAIXA.Close;
+    DMCONSULTA.IBRELCAIXA.SQL.CLEAR;
+    DMCONSULTA.IBRELCAIXA.SQL.Add('select * from TBCAIXA where DT_ENTRADA between:datai and:dataf and DO_TIPO =:FPAG');
+    DMCONSULTA.IBRELCAIXA.ParamByName('DATAI').AsDate:=STRTODATE(DATAI.Text);
+    DMCONSULTA.IBRELCAIXA.ParamByName('DATAF').AsDate:=STRTODATE(DATAF.Text);
+    DMCONSULTA.IBRELCAIXA.ParamByName('FPAG').AsString:=ComboBox1.Text;
+
+    DMCONSULTA.IBRELCAIXA.Open;
+    FRMRELCAIXA:=TFRMRELCAIXA.Create(Self);
+    FRMRELCAIXA.qrpcaixa.preview;
+   end;
+end;
+
+procedure TFRMMENURELCAIXA.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if Key = VK_RETURN then Perform(Wm_NextDlgCtl,0,0);
+end;
+
+end.

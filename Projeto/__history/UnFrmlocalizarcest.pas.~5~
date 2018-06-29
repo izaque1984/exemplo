@@ -1,0 +1,35 @@
+unit UnFrmlocalizarcest;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, TFlatEditUnit, TFlatGroupBoxUnit, Grids, DBGrids;
+
+type
+  TFRMLOCALIZARCEST = class(TForm)
+    Panel1: TPanel;
+    FlatGroupBox1: TFlatGroupBox;
+    editcodigo: TFlatEdit;
+    rb: TRadioGroup;
+    DBGrid1: TDBGrid;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZARCEST: TFRMLOCALIZARCEST;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFRMLOCALIZARCEST.FormShow(Sender: TObject);
+begin
+editcodigo.SetFocus;
+end;
+
+end.

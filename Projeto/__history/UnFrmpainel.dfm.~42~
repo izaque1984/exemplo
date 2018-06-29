@@ -1,0 +1,382 @@
+object FRMPAINEL: TFRMPAINEL
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'BI Sistemas'
+  ClientHeight = 499
+  ClientWidth = 736
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIForm
+  Menu = MainMenu1
+  OldCreateOrder = False
+  Position = poScreenCenter
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 480
+    Width = 736
+    Height = 19
+    Panels = <
+      item
+        Text = 'Sistema Emissor da Nota Fiscal da Nota Eletronica'
+        Width = 50
+      end>
+  end
+  object Ribbon1: TRibbon
+    Left = 0
+    Top = 0
+    Width = 736
+    Height = 143
+    ActionManager = ActionManager1
+    ApplicationMenu.IconSize = isLarge
+    ApplicationMenu.Menu = RibbonApplicationMenuBar1
+    Caption = 'Emissor da Nota Fiscal do Consumidor Eletr'#244'nica - NFC-e'
+    Tabs = <
+      item
+        Caption = 'Cadastro'
+        Page = RibbonPage1
+      end
+      item
+        Caption = 'Nota Fiscal - NFC-e'
+        Page = RibbonPage2
+      end
+      item
+        Caption = 'Utilit'#225'rios'
+        Page = RibbonPage3
+      end>
+    TabIndex = 1
+    DesignSize = (
+      736
+      143)
+    StyleName = 'Ribbon - Obsidian'
+    object RibbonApplicationMenuBar1: TRibbonApplicationMenuBar
+      ActionManager = ActionManager1
+      OptionItems = <>
+      RecentItems = <>
+    end
+    object RibbonPage3: TRibbonPage
+      Left = 0
+      Top = 50
+      Width = 735
+      Height = 93
+      Caption = 'Utilit'#225'rios'
+      Index = 2
+      object RibbonGroup4: TRibbonGroup
+        Left = 4
+        Top = 3
+        Width = 59
+        Height = 86
+        ActionManager = ActionManager1
+        Caption = 'Administrador'
+        GroupIndex = 0
+      end
+      object RibbonGroup5: TRibbonGroup
+        Left = 65
+        Top = 3
+        Width = 111
+        Height = 86
+        ActionManager = ActionManager1
+        Caption = 'Impressora'
+        GroupIndex = 1
+      end
+    end
+    object RibbonPage1: TRibbonPage
+      Left = 0
+      Top = 50
+      Width = 735
+      Height = 93
+      Caption = 'Cadastro'
+      Index = 0
+      object RibbonGroup1: TRibbonGroup
+        Left = 4
+        Top = 3
+        Width = 111
+        Height = 86
+        ActionManager = ActionManager1
+        Caption = 'Principal'
+        GroupIndex = 0
+      end
+    end
+    object RibbonPage2: TRibbonPage
+      Left = 0
+      Top = 50
+      Width = 735
+      Height = 93
+      Caption = 'Nota Fiscal - NFC-e'
+      Index = 1
+      object RibbonGroup3: TRibbonGroup
+        Left = 4
+        Top = 3
+        Width = 126
+        Height = 86
+        ActionManager = ActionManager1
+        Caption = 'NFC-e'
+        GroupIndex = 0
+      end
+      object RibbonGroup2: TRibbonGroup
+        Left = 132
+        Top = 3
+        Width = 112
+        Height = 86
+        ActionManager = ActionManager1
+        Caption = 'Conting'#234'ncia'
+        GroupIndex = 1
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 408
+    Top = 8
+    object Cadastros1: TMenuItem
+      Caption = 'Cadastro'
+      object CadastrodeProdutos1: TMenuItem
+        Caption = 'Cadastro de Produtos'
+        OnClick = CadastrodeProdutos1Click
+      end
+    end
+    object Caixa1: TMenuItem
+      Caption = 'Caixa'
+      object ExtratoMovimento1: TMenuItem
+        Caption = 'Extrato Movimento'
+        OnClick = ExtratoMovimento1Click
+      end
+    end
+    object Impressora1: TMenuItem
+      Caption = 'Impressora'
+      object DetectarImpressora1: TMenuItem
+        Caption = 'Detectar Impressora'
+        OnClick = DetectarImpressora1Click
+      end
+      object estarImpressora1: TMenuItem
+        Caption = 'Testar Impressora'
+        OnClick = estarImpressora1Click
+      end
+      object ReImprimiraUltimaNFCe1: TMenuItem
+        Caption = 'ReImprimir a Ultima NFC-e'
+        OnClick = ReImprimiraUltimaNFCe1Click
+      end
+    end
+    object NFCe1: TMenuItem
+      Caption = 'NFC-e'
+      object Contingncia1: TMenuItem
+        Caption = 'Conting'#234'ncia'
+        object VerificarArquivos1: TMenuItem
+          Caption = 'Verificar Arquivos'
+          OnClick = VerificarArquivos1Click
+        end
+        object EnviarContingncia1: TMenuItem
+          Caption = 'Enviar Conting'#234'ncia'
+          OnClick = EnviarContingncia1Click
+        end
+      end
+      object NotasEmitidas1: TMenuItem
+        Caption = 'Gerenciar Notas'
+        OnClick = NotasEmitidas1Click
+      end
+      object ConsultarInformaosobreanota1: TMenuItem
+        Caption = 'Consultar Informa'#231#227'o sobre a NFCE'
+        OnClick = ConsultarInformaosobreanota1Click
+      end
+      object AvisoErroNFCe1: TMenuItem
+        Caption = 'Aviso Erro NFC-e'
+        OnClick = AvisoErroNFCe1Click
+      end
+    end
+    object OutrosMtodos1: TMenuItem
+      Caption = 'Outros M'#233'todos'
+      object AjustarDatHora1: TMenuItem
+        Caption = 'Ajustar Data / Hora'
+        OnClick = AjustarDatHora1Click
+      end
+      object Servidor1: TMenuItem
+        Caption = 'Testar Servidor'
+        OnClick = Servidor1Click
+      end
+    end
+    object Adminstrador1: TMenuItem
+      Caption = 'Administrador'
+      object Configurae1: TMenuItem
+        Caption = 'Configura'#231#245'es'
+        OnClick = Configurae1Click
+      end
+    end
+  end
+  object ActionManager1: TActionManager
+    ActionBars = <
+      item
+        Items = <
+          item
+            Action = Action5
+            Caption = '&Empresa'
+          end
+          item
+            Action = Action1
+            Caption = '&Clientes'
+          end
+          item
+            Action = Action2
+            Caption = '&Produtos'
+          end
+          item
+            Action = Action6
+            Caption = '&Usu'#225'rios'
+          end>
+      end
+      item
+      end
+      item
+        Items = <
+          item
+            Action = Action3
+            Caption = '&Ger'#234'nciar NFC-e'
+          end
+          item
+            Action = Action4
+            Caption = '&Conting'#234'ncia'
+          end>
+      end
+      item
+        Items = <
+          item
+            Action = Action3
+            Caption = '&Ger'#234'nciar NFC-e'
+          end
+          item
+            Action = Action4
+            Caption = '&Conting'#234'ncia'
+          end>
+      end
+      item
+        Items = <
+          item
+            Action = Action5
+            Caption = '&Empresa'
+            CommandProperties.ButtonSize = bsLarge
+          end
+          item
+            Action = Action6
+            Caption = '&Usu'#225'rios'
+          end
+          item
+            Action = Action1
+            Caption = '&Clientes'
+          end
+          item
+            Action = Action2
+            Caption = '&Produtos'
+          end>
+        ActionBar = RibbonGroup1
+      end
+      item
+        Items = <
+          item
+            Action = Action7
+            Caption = '&Emitir Nota Fiscal'
+            CommandProperties.ButtonSize = bsLarge
+          end
+          item
+            Action = Action10
+            Caption = '&Ger'#234'nciar Notas'
+            CommandProperties.ButtonSize = bsLarge
+          end>
+        ActionBar = RibbonGroup3
+      end
+      item
+        Items = <
+          item
+            ChangesAllowed = [caModify]
+            Items = <
+              item
+                Caption = '&ActionClientItem0'
+              end>
+            Caption = '&ActionClientItem0'
+            KeyTip = 'F'
+          end>
+        ActionBar = RibbonApplicationMenuBar1
+        AutoSize = False
+      end
+      item
+        Items = <
+          item
+            Action = Action8
+            Caption = '&Arquivos'
+          end
+          item
+            Action = Action9
+            Caption = '&Enviar Conting'#234'ncia'
+          end>
+        ActionBar = RibbonGroup2
+      end
+      item
+        Items = <
+          item
+            Action = Action11
+            Caption = '&Detectar Impresora'
+          end
+          item
+            Action = Action12
+            Caption = '&Testar Impressora'
+          end>
+        ActionBar = RibbonGroup5
+      end
+      item
+        Items = <
+          item
+            Action = Action13
+            Caption = '&Controle'
+            CommandProperties.ButtonSize = bsLarge
+          end>
+        ActionBar = RibbonGroup4
+      end>
+    Left = 136
+    Top = 200
+    StyleName = 'Ribbon - Obsidian'
+    object Action1: TAction
+      Caption = 'Clientes'
+    end
+    object Action2: TAction
+      Caption = 'Produtos'
+    end
+    object Action3: TAction
+      Caption = 'Ger'#234'nciar NFC-e'
+    end
+    object Action4: TAction
+      Caption = 'Conting'#234'ncia'
+    end
+    object Action5: TAction
+      Caption = 'Empresa'
+    end
+    object Action6: TAction
+      Caption = 'Usu'#225'rios'
+    end
+    object Action7: TAction
+      Caption = 'Emitir Nota Fiscal'
+      OnExecute = Action7Execute
+    end
+    object Action8: TAction
+      Caption = 'Arquivos'
+    end
+    object Action9: TAction
+      Caption = 'Enviar Conting'#234'ncia'
+    end
+    object Action10: TAction
+      Caption = 'Ger'#234'nciar Notas'
+    end
+    object Action11: TAction
+      Caption = 'Detectar Impresora'
+    end
+    object Action12: TAction
+      Caption = 'Testar Impressora'
+    end
+    object Action13: TAction
+      Caption = 'Controle'
+    end
+  end
+end

@@ -1,0 +1,26 @@
+unit UnFrmimprimir;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TFRMIMPRIMIR = class(TForm)
+    Panel1: TPanel;
+    RadioGroup1: TRadioGroup;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMIMPRIMIR: TFRMIMPRIMIR;
+
+implementation
+
+{$R *.dfm}
+
+end.

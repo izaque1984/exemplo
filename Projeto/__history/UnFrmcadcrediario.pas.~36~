@@ -1,0 +1,232 @@
+unit UnFrmcadcrediario;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, TFlatEditUnit;
+
+type
+  TFRMCADCREDIARIO = class(TForm)
+    GroupBox1: TGroupBox;
+    editcodigo: TFlatEdit;
+    editnome: TFlatEdit;
+    editnrdebito: TEdit;
+    editvalorvenda: TEdit;
+    editrefvenda: TEdit;
+    editdataemissao: TEdit;
+    editvalorparcelar: TEdit;
+    procedure FormShow(Sender: TObject);
+    procedure editcodigoExit(Sender: TObject);
+    procedure editnomeExit(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCADCREDIARIO: TFRMCADCREDIARIO;
+  recebevalor, recebenumero: string;
+
+implementation
+
+uses UnDmconsulta, UnDmpdv, UnFrmpdv;
+
+{$R *.dfm}
+
+procedure TFRMCADCREDIARIO.editcodigoExit(Sender: TObject);
+var
+  tSql: String;
+  CD:STRING;
+
+
+begin
+
+
+
+
+   If   editcodigo.Text <> '' then begin
+	      dmconsulta.qyclientevenda.Active := False;
+   	    dmconsulta.qyclientevenda.SQL.Clear;
+	      dmconsulta.qyclientevenda.SQL.Add('select * from tbcliente where CLI_CODIGO='+chr(39)+editcodigo.Text+chr(39));
+   	    dmconsulta.qyclientevenda.Active := True;
+
+
+	   If dmconsulta.qyclientevendaCLI_CODIGO.AsString = '' then begin
+   	    Application.MessageBox('Cliente não Cadastrado','Informação do Sistema',Mb_IconInformation);
+
+      	editcodigo.SetFocus;
+        editcodigo.Clear;
+
+
+	   end
+
+  else
+
+
+
+
+    begin
+     editcodigo.Text :=   dmconsulta.qyclientevendaCLI_CODIGO.AsString;
+     editnome.Text   :=   dmconsulta.qyclientevendaCLI_NOME.AsString;
+    end;
+end;
+
+end;
+
+procedure TFRMCADCREDIARIO.editnomeExit(Sender: TObject);
+var
+  parc,i:integer;
+  valorparcela:Currency;
+  total:Currency;
+  f:TextFile;
+  ref:String;
+
+begin
+
+ if Application.MessageBox('Confirma Inclusão do Débito?','Comfirmação',MB_YESNO + MB_ICONQUESTION)= IDYES then
+
+ begin
+
+  if editnome.Text = '' then
+
+   Begin
+
+   Application.MessageBox('Informe o Cliente!','Informação do Sistema',Mb_IconInformation);
+   Exit
+   End;
+
+
+ begin
+ {
+ if (DMLOJA.TBCONFIGCONVENIO.AsString='SIM')and (editnomeconvenio.Text='' )then
+
+Begin
+
+  Application.MessageBox('Venda no Convenio! Digite o numero do Convenio!','Informação do Sistema',Mb_IconInformation);
+  editnomeconvenio.SetFocus;
+  Exit
+End;
+
+
+
+
+if( DMLOJA.TBCONFIGCOMICAO.AsString = 'SIM' ) and (editnomevendedor.Text = '')then
+Begin
+  Application.MessageBox('Sistema configurado para Comissão! Identifique o Vendedor!','Informação do Sistema',Mb_IconInformation);
+  editnomevendedor.SetFocus;
+  Exit
+End;
+
+   }
+
+   DMLOJA.TBDEBITO.Insert;
+
+
+   editnrdebito.Text := StringOfChar('0',1-Length(DMLOJA.TBDEBITONR_DEBITO.AsString))+DMLOJA.TBDEBITONR_DEBITO.AsString;
+
+
+
+    DMLOJA.TBDEBITOCD_CLIENTE.AsString:= editcodigo.Text;
+    DMLOJA.TBDEBITONM_CLIENTE.AsString:= editnome.Text;
+    DMLOJA.TBDEBITODT_EMISAO.AsString:= DateToStr(Date);
+    DMLOJA.TBDEBITODT_VENCIMENTO.AsString:= DateToStr(Date);
+    DMLOJA.TBDEBITONR_PARCELA.AsString:= '1';
+    DMLOJA.TBDEBITOVL_COMPRA.AsString:= editvalorvenda.Text;
+    DMLOJA.TBDEBITOVL_FCOMPRA.AsString:= editvalorvenda.Text;
+      // DMLOJA.TBDEBITONR_CPF.AsString:= editnrcpfcliente.Text;
+
+    DMLOJA.TBDEBITOMINUTA.AsString:= editrefvenda.Text;
+
+
+  with DMLOJA do
+    begin
+
+    TBDEBITO.Post;
+
+
+
+                          valorparcela:= StrToCurr(editvalorvenda.Text);
+
+                          ref:=TBDEBITORF_REFERENTE.AsString;
+
+          for parc:= 1 to DMLOJA.TBDEBITONR_PARCELA.AsInteger do
+
+                 begin
+                    TBDETDEBITO.Append;
+
+
+
+                    TBDETDEBITONR_DEBITO.AsString   :=  editnrdebito.Text;
+                    TBDETDEBITOCD_CLIENTE.AsString  :=  editcodigo.Text;
+                    TBDETDEBITONM_CLIENTE.AsString  :=  editnome.Text;
+                  //  TBDETDEBITONR_CPF.AsString:=editnrcpfcliente.Text;
+                    TBDETDEBITOMINUTA.AsString := editrefvenda.Text ;
+
+
+
+                    TBDETDEBITODT_EMISAO.AsString:= DateToStr(Date);
+               //     TBDETDEBITODT_VENCIMENTO.AsDateTime:= TBDEBITODT_EMISAO.AsDateTime + ((parc * 31)-1);
+
+
+                    TBDETDEBITODT_VENCIMENTO.AsDateTime:= IncMonth (StrToDate(editdataemissao.Text),parc);;
+
+
+
+                    TBDETDEBITOVL_PARCELA.AsCurrency:=valorparcela;
+                    TBDETDEBITOVL_PARCJURO.AsCurrency:=valorparcela;
+                    TBDETDEBITONR_PARCELA.AsInteger:=parc;
+                    TBDETDEBITORF_REFERENTE.AsString:=ref;
+                    TBDETDEBITO.Post;
+
+
+
+                     end ;
+
+
+
+
+  end;
+
+
+
+
+
+// FRMMENUCARNE:=TFRMMENUCARNE.Create(Self);
+// FRMMENUCARNE.ShowModal;
+// inicio do carne
+
+  DMLOJA.IBCARNE.Close;
+  DMLOJA.IBCARNE.ParamByName('NR_DEBITO').AsInteger:=strtoint(editnrdebito.text);
+  DMLOJA.IBCARNE.Open;
+//if  DMPDV.TBCONFIGTP_IPMPRESSORA.AsString='MATRICIAL1' then  // PRETINHA IZE
+//BEGIN
+
+
+end;
+
+  FRMPDV.EDT_Nome.Text:= FRMCADCREDIARIO.editnome.Text;
+  Close ();
+
+ end;
+end;
+
+procedure TFRMCADCREDIARIO.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if Key = VK_RETURN then Perform(Wm_NextDlgCtl,0,0);
+end;
+
+procedure TFRMCADCREDIARIO.FormShow(Sender: TObject);
+begin
+  editcodigo.SetFocus;
+  editrefvenda.Text     := recebenumero;
+  editvalorvenda.Text   := recebevalor;
+  editvalorparcelar.Text:= recebevalor;
+  editdataemissao.Text  := DateTOStr(Date) ;
+
+end;
+
+end.

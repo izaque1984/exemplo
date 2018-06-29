@@ -1,0 +1,41 @@
+unit UnFrmimprimir;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, Buttons;
+
+type
+  TFRMIMPRIMIR = class(TForm)
+    Panel1: TPanel;
+    RadioGroup1: TRadioGroup;
+    BitBtn1: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMIMPRIMIR: TFRMIMPRIMIR;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFRMIMPRIMIR.BitBtn1Click(Sender: TObject);
+var
+    StrTagNFCe: String;
+    StrValorTagNFCe: String;
+
+begin
+  StrTagNFCe:= InputBox('Método regAlterarValor_NFCe_Daruma', 'Digite o caminho completo da tag que deseja alterar:', 'CONFIGURACAO\TipoAmbiente');
+  StrValorTagNFCe:= InputBox('Método regAlterarValor_NFCe_Daruma', 'Digite valor:', '3');
+  iRetorno := regAlterarValor_NFCe_Daruma(StrTagNFCe, StrValorTagNFCe);
+  TrataRetorno_NFCe(iRetorno);
+
+end;
+
+end.

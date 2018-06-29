@@ -1,0 +1,249 @@
+object FRMLOCALIZARVENDA: TFRMLOCALIZARVENDA
+  Left = 0
+  Top = 0
+  Caption = 'Localizar NFC-e'
+  ClientHeight = 456
+  ClientWidth = 798
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 798
+    Height = 57
+    Align = alTop
+    TabOrder = 0
+    ExplicitLeft = -82
+    ExplicitWidth = 878
+    object GroupBox1: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 608
+      Height = 55
+      Align = alLeft
+      Caption = 'Localizar Venda / NFC-e'
+      TabOrder = 0
+      object Edit1: TEdit
+        Left = 6
+        Top = 20
+        Width = 587
+        Height = 24
+        CharCase = ecUpperCase
+        Ctl3D = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 0
+      end
+    end
+    object rb: TRadioGroup
+      Left = 609
+      Top = 1
+      Width = 188
+      Height = 55
+      Align = alClient
+      Caption = 'Busca'
+      Columns = 2
+      ItemIndex = 1
+      Items.Strings = (
+        'Nome Cliente'
+        'N'#186' NFCE-e')
+      TabOrder = 1
+      ExplicitLeft = 633
+      ExplicitWidth = 244
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 400
+    Width = 798
+    Height = 56
+    Align = alBottom
+    TabOrder = 1
+    ExplicitLeft = -80
+    ExplicitWidth = 878
+    object GroupBox4: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 207
+      Height = 54
+      Align = alLeft
+      Caption = 'N'#186' NFC-e'
+      TabOrder = 0
+      object DBEdit1: TDBEdit
+        Left = 8
+        Top = 18
+        Width = 121
+        Height = 19
+        CharCase = ecUpperCase
+        Color = clWhite
+        Ctl3D = False
+        DataField = 'NR_DANOTA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentCtl3D = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 208
+      Top = 1
+      Width = 368
+      Height = 54
+      Align = alLeft
+      Caption = 'Chave NFC-e'
+      TabOrder = 1
+      object DBEdit2: TDBEdit
+        Left = 6
+        Top = 18
+        Width = 356
+        Height = 19
+        CharCase = ecUpperCase
+        Color = clWhite
+        Ctl3D = False
+        DataField = 'CHAVENOTA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentCtl3D = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 576
+      Top = 1
+      Width = 221
+      Height = 54
+      Align = alClient
+      Caption = 'Protocolo NFC-e'
+      TabOrder = 2
+      ExplicitWidth = 301
+      object DBEdit3: TDBEdit
+        Left = 6
+        Top = 18
+        Width = 209
+        Height = 19
+        CharCase = ecUpperCase
+        Color = clWhite
+        Ctl3D = False
+        DataField = 'PROTOCOLONOTA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentCtl3D = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 57
+    Width = 798
+    Height = 343
+    Align = alClient
+    BevelInner = bvLowered
+    TabOrder = 2
+    ExplicitLeft = -80
+    ExplicitWidth = 878
+    ExplicitHeight = 367
+    object DBGrid1: TDBGrid
+      Left = 2
+      Top = 2
+      Width = 794
+      Height = 339
+      Align = alClient
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDblClick = DBGrid1DblClick
+      Columns = <
+        item
+          Color = clWhite
+          Expanded = False
+          FieldName = 'MINUTA'
+          Title.Alignment = taCenter
+          Title.Caption = 'Controle'
+          Width = 111
+          Visible = True
+        end
+        item
+          Color = 8454143
+          Expanded = False
+          FieldName = 'NR_DANOTA'
+          Title.Caption = 'N'#186' NFC-e'
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -13
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 101
+          Visible = True
+        end
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'DATA'
+          Title.Alignment = taCenter
+          Title.Caption = 'Data'
+          Width = 92
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'VENDA_NMCLIENTE'
+          Title.Caption = 'Cliente'
+          Width = 131
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'TOTALVENDA'
+          Title.Alignment = taCenter
+          Title.Caption = 'Total '
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CHAVENOTA'
+          Title.Caption = 'Chave NFC-e'
+          Width = 221
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'PROTOCOLONOTA'
+          Title.Caption = 'Protocolo NFC-e'
+          Visible = True
+        end>
+    end
+  end
+end

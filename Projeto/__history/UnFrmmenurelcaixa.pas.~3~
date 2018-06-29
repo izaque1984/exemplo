@@ -1,0 +1,41 @@
+unit UnFrmmenurelcaixa;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, Mask;
+
+type
+  TFRMMENURELCAIXA = class(TForm)
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    GroupBox2: TGroupBox;
+    DATAI: TMaskEdit;
+    GroupBox3: TGroupBox;
+    DATAF: TMaskEdit;
+    ComboBox1: TComboBox;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    btnImprimir: TBitBtn;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMMENURELCAIXA: TFRMMENURELCAIXA;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFRMMENURELCAIXA.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if Key = VK_RETURN then Perform(Wm_NextDlgCtl,0,0);
+end;
+
+end.

@@ -1,0 +1,54 @@
+unit UnFrmcancelarnota;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Buttons, ExtCtrls, StdCtrls;
+
+type
+  TFRMCANCELARNOTA = class(TForm)
+    Label4: TLabel;
+    EDT_NNF: TEdit;
+    Label11: TLabel;
+    Label5: TLabel;
+    EDT_NumeroSerie: TEdit;
+    Label2: TLabel;
+    Label1: TLabel;
+    EDT_ChaveAcesso: TEdit;
+    Label12: TLabel;
+    Label3: TLabel;
+    EDT_Protocolo: TEdit;
+    Label7: TLabel;
+    Label6: TLabel;
+    EDT_Justificativa: TEdit;
+    Panel1: TPanel;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    Label10: TLabel;
+    Label9: TLabel;
+    Label15: TLabel;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCANCELARNOTA: TFRMCANCELARNOTA;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFRMCANCELARNOTA.FormShow(Sender: TObject);
+begin
+    FRMCANCELARNOTA.EDT_NNF.Text:=         DMLOJA.tbvendaNR_DANOTA.AsString;
+    FRMCANCELARNOTA.EDT_NumeroSerie.Text:= DMLOJA.tbvendaSERIENOTA.AsString;
+    FRMCANCELARNOTA.EDT_ChaveAcesso.Text:= DMLOJA.tbvendaCHAVENOTA.AsString;
+    FRMCANCELARNOTA.EDT_Protocolo.Text:=   DMLOJA.tbvendaPROTOCOLONOTA.AsString;
+    EDT_Justificativa.SetFocus;
+end;
+
+end.

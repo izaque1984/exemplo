@@ -1,0 +1,179 @@
+unit UnDmconsulta;
+
+interface
+
+uses
+  SysUtils, Classes, DB, IBCustomDataSet, IBQuery;
+
+type
+  TDMCONSULTA = class(TDataModule)
+    qyproduto: TIBQuery;
+    qyprodutoREFERENCIA: TIBStringField;
+    qyprodutoQTDCOMPRADA: TIntegerField;
+    qyprodutoQTDVENDIDA: TIntegerField;
+    qyprodutoQTDESTOQUE: TIntegerField;
+    qyprodutoULTIMACOMPRA: TDateField;
+    qyprodutoULTIMAVENDA: TDateField;
+    qyprodutoDESCRICAO: TIBStringField;
+    qyprodutoVLESTOQUE: TFloatField;
+    qyprodutoPONCENTAGEN: TFloatField;
+    qyprodutoFORNECEDOR: TIBStringField;
+    qyprodutoGRUPO: TIBStringField;
+    qyprodutoCOR: TIBStringField;
+    qyprodutoCUSTOMEDIO: TFloatField;
+    qyprodutoUNIDADE: TIBStringField;
+    qyprodutoAUDITORIA: TIBStringField;
+    qyprodutoCDFORN: TIntegerField;
+    qyprodutoCDUND: TIntegerField;
+    qyprodutoCFOP: TIBStringField;
+    qyprodutoNCM: TIBStringField;
+    qyprodutoQTDMINIMA: TIntegerField;
+    qyprodutoALIQUOTA: TIBStringField;
+    qyprodutoDTINICIOPROMOCAO: TDateField;
+    qyprodutoDTFIMPROMOCAO: TDateField;
+    qyprodutoVLRVENDA: TIBBCDField;
+    qyprodutoPRECOCUSTO: TIBBCDField;
+    qyprodutoVLRCOMPRA: TIBBCDField;
+    qyprodutoLUCRO: TIBBCDField;
+    qyprodutoDESCONTOINDIVIDUAL: TIBBCDField;
+    qyprodutoVLVENDAPROMOCAO: TIBBCDField;
+    qyprodutoCOLECAO: TIBStringField;
+    qyprodutoSECAO: TIBStringField;
+    qyprodutoSUBGRUPO: TIBStringField;
+    qyprodutoMARCA: TIBStringField;
+    qyclientevenda: TIBQuery;
+    qyclientevendaCLI_CODIGO: TIntegerField;
+    qyclientevendaCLI_NOME: TIBStringField;
+    qyclientevendaCLI_SEXO: TIBStringField;
+    qyclientevendaCLI_PESSOA: TIBStringField;
+    qyclientevendaCLI_RG: TIBStringField;
+    qyclientevendaCLI_CPF: TIBStringField;
+    qyclientevendaCLI_NASCIMENTO: TDateField;
+    qyclientevendaCLI_ENDERECO: TIBStringField;
+    qyclientevendaCLI_BAIRRO: TIBStringField;
+    qyclientevendaCLI_NUMEROCASA: TIntegerField;
+    qyclientevendaCLI_COMPLEMENTO: TIBStringField;
+    qyclientevendaCLI_CIDADE: TIBStringField;
+    qyclientevendaCLI_CEP: TIBStringField;
+    qyclientevendaCLI_TELEFONE: TIBStringField;
+    qyclientevendaCLI_CELULAR: TIBStringField;
+    qyclientevendaCLI_FONERECADO: TIBStringField;
+    qyclientevendaCLI_ESTADOCIVIL: TIBStringField;
+    qyclientevendaCLI_NMCONJUGE: TIBStringField;
+    qyclientevendaCLI_STSPC: TIBStringField;
+    qyclientevendaCLI_DATACONSULTA: TDateField;
+    qyclientevendaCLI_TELCONTATO: TIBStringField;
+    qyclientevendaCLI_DATACADASTRO: TDateField;
+    qyclientevendaCLI_INATIVIDADE: TIBStringField;
+    qyclientevendaCLI_RENDA: TIBBCDField;
+    qyclientevendaCLI_NMTRABALHO: TIBStringField;
+    qyclientevendaCLI_TELTRABALHO: TIBStringField;
+    qyclientevendaCLI_FUNCAO: TIBStringField;
+    qyclientevendaCLI_UF: TIBStringField;
+    qyclientevendaCLI_EMAIL: TIBStringField;
+    qyclientevendaCLI_CODIGOMUNICIPIO: TIBStringField;
+    IBRELCAIXA: TIBQuery;
+    IBRELCAIXACODIGO: TIntegerField;
+    IBRELCAIXAVL_ENTRADA: TIBBCDField;
+    IBRELCAIXADT_ENTRADA: TDateField;
+    IBRELCAIXACOD_VENDEDOR: TIntegerField;
+    IBRELCAIXADO_TIPO: TIBStringField;
+    IBRELCAIXAVL_RECEBIDO: TIBBCDField;
+    IBRELCAIXACD_CLIENTE: TIntegerField;
+    IBRELCAIXAVL_TAXA: TIBBCDField;
+    IBRELCAIXAVL_DESCONTO: TIBBCDField;
+    IBRELCAIXAREFERENTE: TIBStringField;
+    IBRELCAIXASOMA: TIBBCDField;
+    IBRELCAIXAMINUTA: TIntegerField;
+    IBRELCAIXANRCONTROLE: TIntegerField;
+    IBCONSULTACLIENTE: TIBQuery;
+    IBCONSULTACLIENTECLI_CODIGO: TIntegerField;
+    IBCONSULTACLIENTECLI_NOME: TIBStringField;
+    IBCONSULTACLIENTECLI_SEXO: TIBStringField;
+    IBCONSULTACLIENTECLI_PESSOA: TIBStringField;
+    IBCONSULTACLIENTECLI_RG: TIBStringField;
+    IBCONSULTACLIENTECLI_CPF: TIBStringField;
+    IBCONSULTACLIENTECLI_NASCIMENTO: TDateField;
+    IBCONSULTACLIENTECLI_ENDERECO: TIBStringField;
+    IBCONSULTACLIENTECLI_BAIRRO: TIBStringField;
+    IBCONSULTACLIENTECLI_NUMEROCASA: TIntegerField;
+    IBCONSULTACLIENTECLI_COMPLEMENTO: TIBStringField;
+    IBCONSULTACLIENTECLI_CIDADE: TIBStringField;
+    IBCONSULTACLIENTECLI_CEP: TIBStringField;
+    IBCONSULTACLIENTECLI_TELEFONE: TIBStringField;
+    IBCONSULTACLIENTECLI_CELULAR: TIBStringField;
+    IBCONSULTACLIENTECLI_FONERECADO: TIBStringField;
+    IBCONSULTACLIENTECLI_ESTADOCIVIL: TIBStringField;
+    IBCONSULTACLIENTECLI_NMCONJUGE: TIBStringField;
+    IBCONSULTACLIENTECLI_STSPC: TIBStringField;
+    IBCONSULTACLIENTECLI_DATACONSULTA: TDateField;
+    IBCONSULTACLIENTECLI_TELCONTATO: TIBStringField;
+    IBCONSULTACLIENTECLI_DATACADASTRO: TDateField;
+    IBCONSULTACLIENTECLI_INATIVIDADE: TIBStringField;
+    IBCONSULTACLIENTECLI_RENDA: TIBBCDField;
+    IBCONSULTACLIENTECLI_NMTRABALHO: TIBStringField;
+    IBCONSULTACLIENTECLI_TELTRABALHO: TIBStringField;
+    IBCONSULTACLIENTECLI_FUNCAO: TIBStringField;
+    IBCONSULTACLIENTECLI_UF: TIBStringField;
+    IBCONSULTACLIENTECLI_EMAIL: TIBStringField;
+    IBCONSULTACLIENTECLI_CODIGOMUNICIPIO: TIBStringField;
+    DSIBCONSULTACLIENTE: TDataSource;
+    qylocalizarproduto: TIBQuery;
+    dsqylocalizarproduto: TDataSource;
+    IBCONSULTAVENDA: TIBQuery;
+    DSIBVENDA: TDataSource;
+    qylocalizarprodutoREFERENCIA: TIBStringField;
+    qylocalizarprodutoQTDCOMPRADA: TIntegerField;
+    qylocalizarprodutoQTDVENDIDA: TIntegerField;
+    qylocalizarprodutoQTDESTOQUE: TIntegerField;
+    qylocalizarprodutoULTIMACOMPRA: TDateField;
+    qylocalizarprodutoULTIMAVENDA: TDateField;
+    qylocalizarprodutoDESCRICAO: TIBStringField;
+    qylocalizarprodutoVLESTOQUE: TFloatField;
+    qylocalizarprodutoPONCENTAGEN: TFloatField;
+    qylocalizarprodutoFORNECEDOR: TIBStringField;
+    qylocalizarprodutoGRUPO: TIBStringField;
+    qylocalizarprodutoCOR: TIBStringField;
+    qylocalizarprodutoCUSTOMEDIO: TFloatField;
+    qylocalizarprodutoUNIDADE: TIBStringField;
+    qylocalizarprodutoAUDITORIA: TIBStringField;
+    qylocalizarprodutoCDFORN: TIntegerField;
+    qylocalizarprodutoCDUND: TIntegerField;
+    qylocalizarprodutoCFOP: TIBStringField;
+    qylocalizarprodutoNCM: TIBStringField;
+    qylocalizarprodutoQTDMINIMA: TIntegerField;
+    qylocalizarprodutoALIQUOTA: TIBStringField;
+    qylocalizarprodutoDTINICIOPROMOCAO: TDateField;
+    qylocalizarprodutoDTFIMPROMOCAO: TDateField;
+    qylocalizarprodutoVLRVENDA: TIBBCDField;
+    qylocalizarprodutoPRECOCUSTO: TIBBCDField;
+    qylocalizarprodutoVLRCOMPRA: TIBBCDField;
+    qylocalizarprodutoLUCRO: TIBBCDField;
+    qylocalizarprodutoDESCONTOINDIVIDUAL: TIBBCDField;
+    qylocalizarprodutoVLVENDAPROMOCAO: TIBBCDField;
+    qylocalizarprodutoCOLECAO: TIBStringField;
+    qylocalizarprodutoSECAO: TIBStringField;
+    qylocalizarprodutoSUBGRUPO: TIBStringField;
+    qylocalizarprodutoMARCA: TIBStringField;
+    qylocalizarprodutoIMPRIMIR: TIBStringField;
+    dsqyncm: TDataSource;
+    qyncm: TIBQuery;
+    qyncmNCM: TIBStringField;
+    qyncmDESCRICAO: TIBStringField;
+    qyprodutoIMPRIMIR: TIBStringField;
+    qylocalizarprodutoNRCEST: TIBStringField;
+    qyprodutoNRCEST: TIBStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMCONSULTA: TDMCONSULTA;
+
+implementation
+
+{$R *.dfm}
+
+end.

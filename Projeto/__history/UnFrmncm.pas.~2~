@@ -1,0 +1,37 @@
+unit UnFrmncm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, StdCtrls, ExtCtrls, TFlatEditUnit, TFlatGroupBoxUnit;
+
+type
+  TFRMNCM = class(TForm)
+    Panel1: TPanel;
+    FlatGroupBox1: TFlatGroupBox;
+    editcodigo: TFlatEdit;
+    rb: TRadioGroup;
+    Panel2: TPanel;
+    FlatGroupBox3: TFlatGroupBox;
+    DBGrid1: TDBGrid;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMNCM: TFRMNCM;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFRMNCM.FormShow(Sender: TObject);
+begin
+editcodigo.SetFocus;
+end;
+
+end.

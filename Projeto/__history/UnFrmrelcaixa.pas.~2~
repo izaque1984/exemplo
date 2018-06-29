@@ -1,0 +1,24 @@
+unit UnFrmrelcaixa;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TFRMRELCAIXA = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMRELCAIXA: TFRMRELCAIXA;
+
+implementation
+
+{$R *.dfm}
+
+end.

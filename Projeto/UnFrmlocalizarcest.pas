@@ -1,0 +1,71 @@
+unit UnFrmlocalizarcest;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, TFlatEditUnit, TFlatGroupBoxUnit, Grids, DBGrids;
+
+type
+  TFRMLOCALIZARCEST = class(TForm)
+    Panel1: TPanel;
+    FlatGroupBox1: TFlatGroupBox;
+    editcodigo: TFlatEdit;
+    rb: TRadioGroup;
+    DBGrid1: TDBGrid;
+    procedure FormShow(Sender: TObject);
+    procedure editcodigoChange(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZARCEST: TFRMLOCALIZARCEST;
+
+implementation
+
+uses UnDmconsulta, Unfrmcadproduto;
+
+{$R *.dfm}
+
+procedure TFRMLOCALIZARCEST.DBGrid1DblClick(Sender: TObject);
+begin
+frmcadproduto.editcest.Text:= DMCONSULTA.qycestCEST.AsString;
+Close;
+end;
+
+procedure TFRMLOCALIZARCEST.editcodigoChange(Sender: TObject);
+var
+     sqlc:string;
+     tSql: String;
+     consulta: String;
+begin
+
+if rb.ItemIndex=0 then     //Código
+    //Código
+ begin
+
+   consulta:='SELECT* FROM TAB_CEST WHERE NCM LIKE '''+editcodigo.text+'%'+'''' ;
+   DMCONSULTA.qycest.Active:= False;
+   tsql:=consulta;
+
+   DMCONSULTA.qycest.SQL.Clear;
+   DMCONSULTA.qycest.SQL.Add(tsql);
+   DMCONSULTA.qycest.Active:= True;
+
+
+
+
+ end;
+
+end;
+
+procedure TFRMLOCALIZARCEST.FormShow(Sender: TObject);
+begin
+editcodigo.SetFocus;
+end;
+
+end.

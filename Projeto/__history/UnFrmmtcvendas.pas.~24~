@@ -1,0 +1,210 @@
+unit UnFrmmtcvendas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, Buttons, StdCtrls, Grids, DBGrids, ComCtrls, Menus, DBCtrls,
+  Mask;
+
+type
+  TFRMMTCVENDAS = class(TForm)
+    Panel2: TPanel;
+    Panel1: TPanel;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    SpeedButton5: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton1: TSpeedButton;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    DBGrid1: TDBGrid;
+    Panel3: TPanel;
+    TabSheet2: TTabSheet;
+    pnmostra: TPanel;
+    TabSheet3: TTabSheet;
+    Panel4: TPanel;
+    TabSheet4: TTabSheet;
+    Panel5: TPanel;
+    DBRichEdit1: TDBRichEdit;
+    PopupMenu1: TPopupMenu;
+    ExibirMensagemdeErro1: TMenuItem;
+    StatusBar1: TStatusBar;
+    Panel7: TPanel;
+    GroupBox2: TGroupBox;
+    DBGrid3: TDBGrid;
+    Panel6: TPanel;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    ExibirItensdaNotaFiscal1: TMenuItem;
+    DATAI: TMaskEdit;
+    DATAF: TMaskEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    ComboBox1: TComboBox;
+    Label4: TLabel;
+    SpeedButton6: TSpeedButton;
+    Panel8: TPanel;
+    SpeedButton7: TSpeedButton;
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure ExibirMensagemdeErro1Click(Sender: TObject);
+    procedure DBRichEdit1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure ExibirItensdaNotaFiscal1Click(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMMTCVENDAS: TFRMMTCVENDAS;
+
+implementation
+
+uses UnDmpdv, UnFrmlocalizarvenda, UnFrmcancelarnota;
+
+{$R *.dfm}
+
+procedure TFRMMTCVENDAS.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  {
+if odd(DMLOJA.TBVENDA.RecNo) then
+DBGrid1.Canvas.Brush.Color:= clmenubar
+else
+DBGrid1.Canvas.Brush.Color:= clcream;
+
+TDbGrid(Sender).Canvas.font.Color:= clBlack;
+
+if gdSelected in State then
+with (Sender as TDBGrid).Canvas do
+begin
+Brush.Color := clSkyBlue;
+FillRect(Rect);
+Font.Style := [fsbold]
+end;
+ }
+TDbGrid(Sender).DefaultDrawDataCell(Rect, TDbGrid(Sender).columns[datacol].field, State);
+If DMLOJA.TBVENDAPROTOCOLONOTA.AsString < '0' then // condição
+DBGrid1.Canvas.Font.Color:= clred; // coloque aqui a cor desejada
+DBGrid1.DefaultDrawDataCell(Rect, DBGrid1.columns[datacol].field, State);
+
+end;
+
+procedure TFRMMTCVENDAS.DBRichEdit1Click(Sender: TObject);
+begin
+DBRichEdit1.SendToBack;
+end;
+
+procedure TFRMMTCVENDAS.ExibirItensdaNotaFiscal1Click(Sender: TObject);
+begin
+Panel7.BringToFront;
+end;
+
+procedure TFRMMTCVENDAS.ExibirMensagemdeErro1Click(Sender: TObject);
+begin
+DBRichEdit1.BringToFront;
+end;
+
+procedure TFRMMTCVENDAS.FormShow(Sender: TObject);
+begin
+DMLOJA.TBVENDA.Last;
+end;
+
+procedure TFRMMTCVENDAS.SpeedButton1Click(Sender: TObject);
+begin
+FRMCANCELARNOTA:= TFRMCANCELARNOTA.Create(Self);
+FRMCANCELARNOTA.ShowModal;
+end;
+
+procedure TFRMMTCVENDAS.SpeedButton3Click(Sender: TObject);
+begin
+FRMLOCALIZARVENDA := TFRMLOCALIZARVENDA.Create(Self);
+FRMLOCALIZARVENDA.ShowModal;
+end;
+
+procedure TFRMMTCVENDAS.SpeedButton4Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TFRMMTCVENDAS.SpeedButton5Click(Sender: TObject);
+var
+  cdProduto: String;
+
+begin
+  if Application.MessageBox('Confirma a Exclusão da Venda??','Comfirmação',MB_YESNO + MB_ICONQUESTION)= IDYES then
+
+  begin
+
+
+  //---------------------------deleta valor do caixa --------------------------------------
+   With DMLOJA do begin
+   DMLOJA.TBCAIXA.First;
+    while Not TBCAIXA.Eof do
+    begin
+
+      DMLOJA.TBCAIXA.Locate('MINUTA',DMLOJA.TBVENDAMINUTA.AsInteger,[]);
+       IF
+        DMLOJA.TBCAIXAMINUTA.AsInteger = DMLOJA.TBVENDAMINUTA.AsInteger THEN
+          BEGIN
+           DMLOJA.TBCAIXA.Delete;
+              END;
+                DMLOJA.TBCAIXA.Next;
+        end;
+ end;
+  //-----------------------------fim deleta valor caixa------------------------------------
+
+
+
+
+//--------------------------DELETA DETVENDA E VOLTA PARA ESTOQUE----------------------------
+  with DMLOJA do
+  begin
+    DMLOJA.TBDETVENDA.First;
+    while not TBDETVENDA.Eof do
+    begin
+
+
+
+
+
+      // devolve item pro estoque
+      cdProduto:=TBDETVENDAREFERENCIA.Asstring;
+      DMLOJA.TBEstoque.Locate('Referencia',DMLOJA.TBDETVENDAREFERENCIA.Asstring,[]);
+
+      TBESTOQUE.Edit;
+      DMLOJA.TBESTOQUEQTDVENDIDA.AsFloat:= DMLOJA.TBESTOQUEQTDVENDIDA.AsFloat - DMLOJA.TBDETVENDADETALHEVENDA_QTDITEN.AsFloat;
+      DMLOJA.TBESTOQUEQTDESTOQUE.AsInteger:=
+      DMLOJA.TBESTOQUEQTDESTOQUE.AsInteger + DMLOJA.TBDETVENDADETALHEVENDA_QTDITEN.AsInteger;
+      tbestoque.Post;
+
+
+      DMLOJA.TBDETVENDA.Delete;
+
+
+    end;
+  //-------------------------------------------FIM DELETA DETVENDA E VOLTA ESTOQUE----------------
+
+  end;
+  DMLOJA.TBVENDA.Delete;
+  Application.MessageBox('Venda NFC-e Excluida!','Informação do Sistema',Mb_IconInformation);
+
+
+end;
+
+end;
+
+procedure TFRMMTCVENDAS.SpeedButton7Click(Sender: TObject);
+begin
+Panel7.SendToBack;
+end;
+
+end.

@@ -1,0 +1,68 @@
+object FRMLOCALIZARVENDA: TFRMLOCALIZARVENDA
+  Left = 0
+  Top = 0
+  Caption = 'Localizar NFC-e'
+  ClientHeight = 456
+  ClientWidth = 798
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 798
+    Height = 57
+    Align = alTop
+    TabOrder = 0
+    ExplicitLeft = -82
+    ExplicitWidth = 878
+    object GroupBox1: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 608
+      Height = 55
+      Align = alLeft
+      Caption = 'Localizar Venda / NFC-e'
+      TabOrder = 0
+      object Edit1: TEdit
+        Left = 6
+        Top = 20
+        Width = 587
+        Height = 24
+        CharCase = ecUpperCase
+        Ctl3D = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 0
+      end
+    end
+    object rb: TRadioGroup
+      Left = 609
+      Top = 1
+      Width = 188
+      Height = 55
+      Align = alClient
+      Caption = 'Busca'
+      Columns = 2
+      ItemIndex = 1
+      Items.Strings = (
+        'Nome Cliente'
+        'N'#186' NFCE-e')
+      TabOrder = 1
+      ExplicitLeft = 633
+      ExplicitWidth = 244
+    end
+  end
+end

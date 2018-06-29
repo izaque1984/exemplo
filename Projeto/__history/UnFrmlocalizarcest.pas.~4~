@@ -1,0 +1,29 @@
+unit UnFrmlocalizarcest;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, TFlatEditUnit, TFlatGroupBoxUnit, Grids, DBGrids;
+
+type
+  TFRMLOCALIZARCEST = class(TForm)
+    Panel1: TPanel;
+    FlatGroupBox1: TFlatGroupBox;
+    editcodigo: TFlatEdit;
+    rb: TRadioGroup;
+    DBGrid1: TDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZARCEST: TFRMLOCALIZARCEST;
+
+implementation
+
+{$R *.dfm}
+
+end.

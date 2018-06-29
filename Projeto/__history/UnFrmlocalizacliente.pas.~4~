@@ -1,0 +1,102 @@
+unit UnFrmlocalizacliente;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, TFlatEditUnit, Buttons, DBCtrls, Grids, DBGrids;
+
+type
+  TFRMLOCALIZACLIENTE = class(TForm)
+    DBGrid4: TDBGrid;
+    Panel3: TPanel;
+    GroupBox2: TGroupBox;
+    DBText1: TDBText;
+    GroupBox3: TGroupBox;
+    DBText2: TDBText;
+    GroupBox4: TGroupBox;
+    DBText3: TDBText;
+    Panel1: TPanel;
+    SpeedButton1: TSpeedButton;
+    GroupBox1: TGroupBox;
+    Edit1: TFlatEdit;
+    RadioGroup1: TRadioGroup;
+    procedure FormShow(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZACLIENTE: TFRMLOCALIZACLIENTE;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFRMLOCALIZACLIENTE.Edit1Change(Sender: TObject);
+var
+ sqlc:string;
+// voz:OleVariant;
+begin
+
+if RadioGroup1.ItemIndex = 0 then
+
+Begin
+
+ if Length(edit1.Text)>0 then
+ begin
+ sqlc:= 'select * from TBCLIENTE where upper(CLI_NOME)like''%'+UpperCase(Edit1.Text)+'%''';
+// voz:=CreateOleObject('SAPI.spVoice');
+ //voz.speak(Edit1.Text, 0);
+
+ end
+  else
+    sqlc:='select * from TBCLIENTE';
+
+  With  DMLOJA.IBCONSULTACLIENTE do
+    begin
+      Close;
+      SQL.Clear;
+      SQL.Add(sqlc);
+      Prepare;
+      Open;
+      end;
+
+End;
+
+ if RadioGroup1.ItemIndex = 1 then
+
+Begin
+
+ if Length(edit1.Text)>0 then
+ begin
+ sqlc:= 'select * from TBCLIENTE where upper(CLI_CPF)like''%'+UpperCase(Edit1.Text)+'%''';
+// voz:=CreateOleObject('SAPI.spVoice');
+ //voz.speak(Edit1.Text, 0);
+
+ end
+  else
+    sqlc:='select * from TBCLIENTE';
+
+  With  DMLOJA.IBCONSULTACLIENTE do
+    begin
+      Close;
+      SQL.Clear;
+      SQL.Add(sqlc);
+      Prepare;
+      Open;
+      end;
+
+End;
+
+end;
+
+procedure TFRMLOCALIZACLIENTE.FormShow(Sender: TObject);
+begin
+Edit1.SetFocus;
+end;
+
+end.

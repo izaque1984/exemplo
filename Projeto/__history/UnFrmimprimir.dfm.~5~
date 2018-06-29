@@ -1,0 +1,66 @@
+object FRMIMPRIMIR: TFRMIMPRIMIR
+  Left = 0
+  Top = 0
+  Caption = 'Imprimir NFCE'
+  ClientHeight = 98
+  ClientWidth = 388
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 70
+    Width = 388
+    Height = 28
+    Align = alBottom
+    BevelOuter = bvNone
+    TabOrder = 0
+    ExplicitTop = 88
+    ExplicitWidth = 410
+    object BitBtn1: TBitBtn
+      Left = 274
+      Top = 0
+      Width = 114
+      Height = 28
+      Align = alRight
+      TabOrder = 0
+      OnClick = BitBtn1Click
+      Kind = bkOK
+      ExplicitLeft = 296
+    end
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 0
+    Top = 0
+    Width = 388
+    Height = 70
+    Align = alClient
+    Caption = 'Deseja Imprimir NFCE'
+    Color = 8454143
+    Columns = 2
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ItemIndex = 0
+    Items.Strings = (
+      'Imprimir NFCE'
+      'N'#227'o Imprimir')
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 1
+    ExplicitLeft = 56
+    ExplicitTop = 24
+    ExplicitWidth = 185
+    ExplicitHeight = 105
+  end
+end

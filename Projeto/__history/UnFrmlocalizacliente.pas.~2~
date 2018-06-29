@@ -1,0 +1,37 @@
+unit UnFrmlocalizacliente;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, TFlatEditUnit, Buttons, DBCtrls, Grids, DBGrids;
+
+type
+  TFRMLOCALIZACLIENTE = class(TForm)
+    DBGrid4: TDBGrid;
+    Panel3: TPanel;
+    GroupBox2: TGroupBox;
+    DBText1: TDBText;
+    GroupBox3: TGroupBox;
+    DBText2: TDBText;
+    GroupBox4: TGroupBox;
+    DBText3: TDBText;
+    Panel1: TPanel;
+    SpeedButton1: TSpeedButton;
+    GroupBox1: TGroupBox;
+    Edit1: TFlatEdit;
+    RadioGroup1: TRadioGroup;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZACLIENTE: TFRMLOCALIZACLIENTE;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,98 @@
+unit UnFrmlocalizarproduto;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Buttons, StdCtrls, TFlatEditUnit, ExtCtrls, DBCtrls, Grids, DBGrids;
+
+type
+  TFRMLOCALIZARPRODUTO = class(TForm)
+    Panel2: TPanel;
+    GroupBox4: TGroupBox;
+    DBText1: TDBText;
+    GroupBox3: TGroupBox;
+    DBText2: TDBText;
+    GroupBox2: TGroupBox;
+    DBText3: TDBText;
+    GroupBox5: TGroupBox;
+    DBText4: TDBText;
+    Panel1: TPanel;
+    BitBtn4: TBitBtn;
+    rb: TRadioGroup;
+    GroupBox1: TGroupBox;
+    Edit1: TFlatEdit;
+    DBGrid1: TDBGrid;
+    procedure Edit1Change(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGrid1DblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMLOCALIZARPRODUTO: TFRMLOCALIZARPRODUTO;
+
+implementation
+
+uses UnDmconsulta, UnFrmpdv;
+
+{$R *.dfm}
+
+procedure TFRMLOCALIZARPRODUTO.DBGrid1DblClick(Sender: TObject);
+begin
+frmpdv.editcodigo.Text:= DMCONSULTA.qyprodutoREFERENCIA.AsString;
+Close();
+end;
+
+procedure TFRMLOCALIZARPRODUTO.Edit1Change(Sender: TObject);
+var
+  consulta,tSql: String;
+
+begin
+
+ if rb.ItemIndex=0 then     //Código
+ BEGIN
+  consulta:='SELECT * FROM TBESTOQUE WHERE REFERENCIA LIKE '''+Edit1.text+'%'+'''';
+  DMCONSULTA.qylocalizarproduto.Active:= False;
+  tsql:=consulta;
+
+  DMCONSULTA.qylocalizarproduto.SQL.Clear;
+  DMCONSULTA.qylocalizarproduto.SQL.Add(tsql);
+  DMCONSULTA.qylocalizarproduto.Active:= True;
+ END;
+
+
+
+ if rb.ItemIndex=1 then
+  begin
+ //consulta:='SELECT* FROM TBESTOQUE WHERE REFERENCIA LIKE '''+Edit1.text+'%'+'''';
+  consulta:= 'select * from Tbestoque where upper(DESCRICAO)like''%'+UpperCase(edit1.Text)+'%''';
+
+  DMCONSULTA.qylocalizarproduto.Active:= False;
+  tsql:=consulta;
+
+  DMCONSULTA.qylocalizarproduto.SQL.Clear;
+  DMCONSULTA.qylocalizarproduto.SQL.Add(tsql);
+  DMCONSULTA.qylocalizarproduto.Active:= True;
+
+
+ END;
+
+end;
+
+procedure TFRMLOCALIZARPRODUTO.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+IF Key = Vk_Escape then Close;
+end;
+
+procedure TFRMLOCALIZARPRODUTO.FormShow(Sender: TObject);
+begin
+Edit1.SetFocus;
+end;
+
+end.

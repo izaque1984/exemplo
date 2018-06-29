@@ -1,0 +1,63 @@
+unit UnFrmidcliente;
+
+interface
+
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, TFlatEditUnit, Buttons;
+
+type
+  TFRMIDCLIENTE = class(TForm)
+    editcpf: TFlatEdit;
+    Label1: TLabel;
+    editnome: TFlatEdit;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure editcpfExit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMIDCLIENTE: TFRMIDCLIENTE;
+
+implementation
+
+uses UnFrmpdv;
+
+{$R *.dfm}
+
+
+procedure TFRMIDCLIENTE.editcpfExit(Sender: TObject);
+begin
+if editcpf.Text='' then
+begin
+ Application.MessageBox('Digite o CPF!','Informação do Sistema',Mb_IconInformation);
+ Exit
+end;
+
+
+FRMPDV.EDT_CPF.Text       := editcpf.Text;
+FRMPDV.EDT_Nome.Text      := 'Consumidor Final';
+//FRMPDV.lblcliente.Caption := editnome.Text;
+FRMPDV.lblcpf.Caption     := editcpf.Text;
+
+Close;
+end;
+
+procedure TFRMIDCLIENTE.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+IF Key = Vk_Escape then Close;
+if Key = VK_RETURN then Perform(Wm_NextDlgCtl,0,0);
+end;
+
+procedure TFRMIDCLIENTE.FormShow(Sender: TObject);
+begin
+editcpf.SetFocus;
+end;
+
+end.

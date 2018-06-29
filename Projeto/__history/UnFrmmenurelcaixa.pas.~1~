@@ -1,0 +1,24 @@
+unit UnFrmmenurelcaixa;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TFRMMENURELCAIXA = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMMENURELCAIXA: TFRMMENURELCAIXA;
+
+implementation
+
+{$R *.dfm}
+
+end.

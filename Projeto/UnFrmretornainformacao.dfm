@@ -1,0 +1,144 @@
+object FRMRETORNAINFODANOTA: TFRMRETORNAINFODANOTA
+  Left = 0
+  Top = 0
+  Caption = 'Informa'#231#227'o da Nota'
+  ClientHeight = 394
+  ClientWidth = 864
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 32
+    Top = 14
+    Width = 74
+    Height = 13
+    Caption = 'Tipo Intervalo: '
+  end
+  object Label2: TLabel
+    Left = 72
+    Top = 46
+    Width = 29
+    Height = 13
+    Caption = 'Inicio:'
+  end
+  object Label3: TLabel
+    Left = 269
+    Top = 45
+    Width = 23
+    Height = 13
+    Caption = 'Fim: '
+  end
+  object Label5: TLabel
+    Left = 12
+    Top = 78
+    Width = 87
+    Height = 13
+    Caption = 'Chave de Acesso:'
+  end
+  object Label7: TLabel
+    Left = 16
+    Top = 144
+    Width = 62
+    Height = 13
+    Caption = 'Retorno(s):  '
+  end
+  object Label4: TLabel
+    Left = 71
+    Top = 109
+    Width = 31
+    Height = 13
+    Caption = 'S'#233'rie: '
+  end
+  object Label6: TLabel
+    Left = 201
+    Top = 109
+    Width = 36
+    Height = 13
+    Caption = #205'ndice: '
+  end
+  object EDT_Inicio: TEdit
+    Left = 112
+    Top = 40
+    Width = 105
+    Height = 21
+    TabOrder = 0
+    Text = '01012014'
+  end
+  object EDT_Fim: TEdit
+    Left = 299
+    Top = 40
+    Width = 102
+    Height = 21
+    TabOrder = 1
+    Text = '31012014'
+  end
+  object EDT_Chave: TEdit
+    Left = 111
+    Top = 72
+    Width = 290
+    Height = 21
+    TabOrder = 2
+    Text = '123456789012345678901234567890123456789'
+  end
+  object MEMO_InfoRetorno: TMemo
+    Left = 8
+    Top = 168
+    Width = 848
+    Height = 209
+    ScrollBars = ssVertical
+    TabOrder = 3
+  end
+  object BR_Enviar: TButton
+    Left = 407
+    Top = 136
+    Width = 75
+    Height = 25
+    Caption = 'Enviar'
+    TabOrder = 4
+    OnClick = BR_EnviarClick
+  end
+  object BT_Fechar: TButton
+    Left = 496
+    Top = 136
+    Width = 75
+    Height = 25
+    Caption = 'Fechar'
+    TabOrder = 5
+  end
+  object CB_TipoIntervalo: TComboBox
+    Left = 112
+    Top = 8
+    Width = 145
+    Height = 21
+    ItemHeight = 13
+    TabOrder = 6
+    Text = 'DATA'
+    Items.Strings = (
+      'DATA'
+      'CHAVE'
+      'NUM')
+  end
+  object EDT_Serie: TEdit
+    Left = 112
+    Top = 104
+    Width = 49
+    Height = 21
+    TabOrder = 7
+    Text = '1'
+  end
+  object EDT_Indice: TEdit
+    Left = 248
+    Top = 104
+    Width = 153
+    Height = 21
+    TabOrder = 8
+    Text = '1+2+3'
+  end
+end
